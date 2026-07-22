@@ -102,22 +102,23 @@ body {
   animation-delay: 0.36s;
 }
 
-/* Séparateurs grille équipes — traits verticaux uniquement */
-.equipes-grid > li:not(:last-child) {
-  border-bottom: none;
+/* Séparateurs grille équipes */
+/* Mobile uniquement : traits horizontaux */
+@media (max-width: 639px) {
+  .equipes-grid > li:not(:last-child) {
+    border-bottom: 1px solid var(--bbb-line);
+  }
 }
 
-@media (min-width: 640px) {
+/* Tablette (2 colonnes) : traits verticaux */
+@media (min-width: 640px) and (max-width: 1023px) {
   .equipes-grid > li:nth-child(odd):not(:last-child) {
     border-right: 1px solid var(--bbb-line);
   }
 }
 
+/* Desktop (3 colonnes) : traits verticaux entre colonnes */
 @media (min-width: 1024px) {
-  .equipes-grid > li {
-    border-right: none;
-  }
-
   .equipes-grid > li:not(:nth-child(3n)):not(:last-child) {
     border-right: 1px solid var(--bbb-line);
   }
