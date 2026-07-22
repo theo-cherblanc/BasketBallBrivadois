@@ -1,22 +1,38 @@
 import type { NextConfig } from "next";
 
-const strapiHost = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-const strapiHostname = new URL(strapiHost).hostname;
+function getStrapiHostname(): string | null {
+  const raw = process.env.NEXT_PUBLIC_STRAPI_URL?.trim();
+  if (!raw) return null;
+
+  try {
+    const withProtocol = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+    return new URL(withProtocol).hostname;
+  } catch {
+    console.warn(
+      `Invalid NEXT_PUBLIC_STRAPI_URL: "${raw}". Expected e.g. https://your-cms.up.railway.app`
+    );
+    return null;
+  }
+}
+
+const strapiHostname = getStrapiHostname();
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: strapiHostname,
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "https",
-        hostname: strapiHostname,
-        pathname: "/uploads/**",
-      },
-    ],
+    remotePatterns: strapiHostname
+      ? [
+          {
+            protocol: "http",
+            hostname: strapiHostname,
+            pathname: "/uploads/**",
+          },
+          {
+            protocol: "https",
+            hostname: strapiHostname,
+            pathname: "/uploads/**",
+          },
+        ]
+      : [],
   },
 };
 
