@@ -73,6 +73,7 @@ Le front affiche le widget en iframe. Sans URL, un placeholder explique quoi fai
 |------|-----------------|
 | Global | Nom, accroche accueil, réseaux, widget club |
 | Club | Page « Le club » |
+| Catégorie | Liste gérée dans Strapi, liée aux équipes |
 | Équipe | Liste / détail équipes |
 | Actualité | Liste / détail actus |
 | Membre du bureau | Page Bureau |

@@ -2,6 +2,8 @@ import type { Core } from '@strapi/strapi';
 
 const PUBLIC_ACTIONS = [
   'api::club.club.find',
+  'api::categorie.categorie.find',
+  'api::categorie.categorie.findOne',
   'api::equipe.equipe.find',
   'api::equipe.equipe.findOne',
   'api::actualite.actualite.find',
@@ -89,11 +91,30 @@ async function seedIfEmpty(strapi: Core.Strapi) {
     status: 'published',
   });
 
+  const defaultCategories = [
+    { nom: 'Seniors hommes', slug: 'seniors-hommes', ordre: 1 },
+    { nom: 'Seniors femmes', slug: 'seniors-femmes', ordre: 2 },
+    { nom: 'U18', slug: 'u18', ordre: 3 },
+    { nom: 'U15', slug: 'u15', ordre: 4 },
+    { nom: 'U13', slug: 'u13', ordre: 5 },
+    { nom: 'U11', slug: 'u11', ordre: 6 },
+    { nom: 'U9', slug: 'u9', ordre: 7 },
+    { nom: 'Loisirs', slug: 'loisirs', ordre: 8 },
+  ];
+
+  const createdCategories: Record<string, string> = {};
+  for (const cat of defaultCategories) {
+    const created = await strapi.documents('api::categorie.categorie').create({
+      data: cat,
+    });
+    createdCategories[cat.slug] = created.documentId;
+  }
+
   const seniors = await strapi.documents('api::equipe.equipe').create({
     data: {
       nom: 'Seniors Hommes',
       slug: 'seniors-hommes',
-      categorie: 'Seniors hommes',
+      categorie: createdCategories['seniors-hommes'],
       description: 'Équipe fanion du club en championnat régional.',
       ordre: 1,
       publishedAt: new Date().toISOString(),
@@ -105,7 +126,7 @@ async function seedIfEmpty(strapi: Core.Strapi) {
     data: {
       nom: 'U15',
       slug: 'u15',
-      categorie: 'U15',
+      categorie: createdCategories['u15'],
       description: 'Formation et compétition pour les jeunes du club.',
       ordre: 2,
       publishedAt: new Date().toISOString(),

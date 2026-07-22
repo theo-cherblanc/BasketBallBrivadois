@@ -28,7 +28,7 @@ export default async function EquipesPage() {
                   className="group block h-full bg-white/40 p-6 transition-colors hover:bg-white md:p-8"
                 >
                   <p className="text-xs uppercase tracking-widest text-red">
-                    {equipe.categorie}
+                    {equipe.categorie?.nom || "Équipe"}
                   </p>
                   <h2 className="mt-3 font-display text-3xl uppercase tracking-wide text-ink group-hover:text-red">
                     {equipe.nom}

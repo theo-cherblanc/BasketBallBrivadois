@@ -30,12 +30,20 @@ export type Club = {
   image?: StrapiMedia | null;
 };
 
+export type Categorie = {
+  id: number;
+  documentId: string;
+  nom: string;
+  slug: string;
+  ordre?: number | null;
+};
+
 export type Equipe = {
   id: number;
   documentId: string;
   nom: string;
   slug: string;
-  categorie: string;
+  categorie?: Categorie | null;
   description?: string | null;
   scorencoWidgetUrl?: string | null;
   ordre?: number | null;

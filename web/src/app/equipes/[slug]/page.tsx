@@ -27,7 +27,7 @@ export default async function EquipeDetailPage({ params }: Props) {
 
   return (
     <>
-      <PageHero title={equipe.nom} subtitle={equipe.categorie} />
+      <PageHero title={equipe.nom} subtitle={equipe.categorie?.nom || undefined} />
       <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
         <Link
           href="/equipes"

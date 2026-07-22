@@ -21,19 +21,10 @@
       "required": true
     },
     "categorie": {
-      "type": "enumeration",
-      "enum": [
-        "Seniors hommes",
-        "Seniors femmes",
-        "U18",
-        "U15",
-        "U13",
-        "U11",
-        "U9",
-        "Loisirs",
-        "Autre"
-      ],
-      "required": true
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::categorie.categorie",
+      "inversedBy": "equipes"
     },
     "description": {
       "type": "text"
