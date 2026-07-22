@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   },
   description:
     "Site officiel du Basket Ball Brivadois — club de basket amateur à Brioude.",
+  verification: {
+    google: "XzhDIGIy13Pce5nkb9JsivldRqHMjXxRRupmVb6RlT8",
+  },
 };
 
 export default async function RootLayout({
