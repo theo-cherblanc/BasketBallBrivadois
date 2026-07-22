@@ -19,20 +19,27 @@ const strapiHostname = getStrapiHostname();
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: strapiHostname
-      ? [
-          {
-            protocol: "http",
-            hostname: strapiHostname,
-            pathname: "/uploads/**",
-          },
-          {
-            protocol: "https",
-            hostname: strapiHostname,
-            pathname: "/uploads/**",
-          },
-        ]
-      : [],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+      ...(strapiHostname
+        ? [
+            {
+              protocol: "http" as const,
+              hostname: strapiHostname,
+              pathname: "/uploads/**",
+            },
+            {
+              protocol: "https" as const,
+              hostname: strapiHostname,
+              pathname: "/uploads/**",
+            },
+          ]
+        : []),
+    ],
   },
 };
 

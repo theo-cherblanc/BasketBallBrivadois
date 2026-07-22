@@ -85,5 +85,34 @@ Charte alignée sur le logo : **noir** `#0a0a0a`, **rouge** `#e30613`, fond blan
 
 ## Déploiement (cible)
 
-- `web` → Vercel (ou équivalent) avec `NEXT_PUBLIC_STRAPI_URL` pointant vers le CMS
-- `cms` → Railway / Render / VPS + Postgres + stockage médias (S3 / Cloudinary)
+- `web` → Vercel avec `NEXT_PUBLIC_STRAPI_URL` pointant vers le CMS
+- `cms` → Railway + Postgres + **Cloudinary** pour les médias
+
+## Cloudinary (images en production)
+
+Sans stockage externe, les uploads Strapi sur Railway ne survivent pas aux redéploiements. Cloudinary corrige ça.
+
+### 1. Créer un compte
+
+1. Inscris-toi sur [cloudinary.com](https://cloudinary.com) (offre gratuite suffisante pour le club)
+2. Sur le **Dashboard**, note :
+   - **Cloud name**
+   - **API Key**
+   - **API Secret**
+
+### 2. Variables Railway (service Strapi)
+
+```env
+CLOUDINARY_NAME=ton_cloud_name
+CLOUDINARY_KEY=ta_api_key
+CLOUDINARY_SECRET=ton_api_secret
+CLOUDINARY_FOLDER=bbb
+```
+
+Strapi bascule automatiquement sur Cloudinary dès que ces 3 variables sont définies. En local, sans elles, les fichiers restent dans `cms/public/uploads`.
+
+### 3. Redéployer Strapi
+
+Après ajout des variables → redéploiement Railway → teste un upload dans **Media Library** Strapi.
+
+Les images apparaîtront avec une URL `https://res.cloudinary.com/...` et s'afficheront sur le site Vercel.
