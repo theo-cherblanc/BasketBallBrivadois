@@ -101,3 +101,25 @@ body {
 .animate-rise-delay-3 {
   animation-delay: 0.36s;
 }
+
+/* Séparateurs grille équipes — traits verticaux uniquement */
+.equipes-grid > li:not(:last-child) {
+  border-bottom: none;
+}
+
+@media (min-width: 640px) {
+  .equipes-grid > li:nth-child(odd):not(:last-child) {
+    border-right: 1px solid var(--bbb-line);
+  }
+}
+
+@media (min-width: 1024px) {
+  .equipes-grid > li {
+    border-right: none;
+  }
+
+  .equipes-grid > li:not(:nth-child(3n)):not(:last-child) {
+    border-right: 1px solid var(--bbb-line);
+  }
+}
+

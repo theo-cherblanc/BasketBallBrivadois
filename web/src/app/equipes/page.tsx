@@ -67,12 +67,9 @@ export default async function EquipesPage() {
                   {group.equipes.length > 1 ? "s" : ""}
                 </span>
               </div>
-              <ul className="grid sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="equipes-grid grid sm:grid-cols-2 lg:grid-cols-3">
                 {group.equipes.map((equipe) => (
-                  <li
-                    key={equipe.documentId}
-                    className="-mt-px -ml-px border border-line bg-white"
-                  >
+                  <li key={equipe.documentId}>
                     <Link
                       href={`/equipes/${equipe.slug}`}
                       className="group block h-full p-6 transition-colors hover:bg-black/[0.02] md:p-8"
