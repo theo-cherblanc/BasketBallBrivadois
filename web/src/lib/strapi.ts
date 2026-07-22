@@ -41,7 +41,8 @@ async function strapiFetch<T>(path: string, init?: RequestInit): Promise<T | nul
   try {
     const res = await fetch(url, {
       ...init,
-      next: { revalidate: 60 },
+      // Contenu CMS : toujours frais (évite un cache Vercel figé après ajout d'équipes)
+      cache: "no-store",
       headers: {
         "Content-Type": "application/json",
         ...(init?.headers || {}),
@@ -97,7 +98,7 @@ export async function getClub() {
 
 export async function getEquipes() {
   const res = await strapiFetch<StrapiListResponse<import("./types").Equipe>>(
-    "/equipes?populate=*&sort=ordre:asc"
+    "/equipes?populate=*&sort=ordre:asc&pagination[pageSize]=100"
   );
   return (res?.data ?? []).map((e) => normalizeMedia(e)!);
 }
@@ -111,7 +112,7 @@ export async function getEquipeBySlug(slug: string) {
 
 export async function getActualites() {
   const res = await strapiFetch<StrapiListResponse<import("./types").Actualite>>(
-    "/actualites?populate=*&sort=datePublication:desc"
+    "/actualites?populate=*&sort=datePublication:desc&pagination[pageSize]=100"
   );
   return (res?.data ?? []).map((a) => normalizeMedia(a)!);
 }
@@ -125,7 +126,7 @@ export async function getActualiteBySlug(slug: string) {
 
 export async function getMembresBureau() {
   const res = await strapiFetch<StrapiListResponse<import("./types").MembreBureau>>(
-    "/membres-bureau?populate=*&sort=ordre:asc"
+    "/membres-bureau?populate=*&sort=ordre:asc&pagination[pageSize]=100"
   );
   return (res?.data ?? []).map((m) => normalizeMedia(m)!);
 }
@@ -133,7 +134,9 @@ export async function getMembresBureau() {
 export async function getPlannings() {
   const res = await strapiFetch<
     StrapiListResponse<import("./types").PlanningEntrainement>
-  >("/plannings-entrainement?populate=equipe&sort=jour:asc");
+  >(
+    "/plannings-entrainement?populate=equipe&sort=jour:asc&pagination[pageSize]=100"
+  );
   return res?.data ?? [];
 }
 
