@@ -1,4 +1,12 @@
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+function getStrapiUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_STRAPI_URL?.trim();
+  if (!raw) return "http://localhost:1337";
+
+  const withProtocol = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  return withProtocol.replace(/\/$/, "");
+}
+
+const STRAPI_URL = getStrapiUrl();
 
 type StrapiListResponse<T> = {
   data: T[];
@@ -16,9 +24,22 @@ function mediaUrl(url?: string | null): string | null {
   return `${STRAPI_URL}${url}`;
 }
 
-async function strapiFetch<T>(path: string, init?: RequestInit): Promise<T | null> {
+function buildStrapiApiUrl(path: string): string | null {
   try {
-    const res = await fetch(`${STRAPI_URL}/api${path}`, {
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+    return new URL(`/api${normalizedPath}`, `${STRAPI_URL}/`).toString();
+  } catch (error) {
+    console.error("Invalid Strapi URL configuration:", STRAPI_URL, error);
+    return null;
+  }
+}
+
+async function strapiFetch<T>(path: string, init?: RequestInit): Promise<T | null> {
+  const url = buildStrapiApiUrl(path);
+  if (!url) return null;
+
+  try {
+    const res = await fetch(url, {
       ...init,
       next: { revalidate: 60 },
       headers: {
