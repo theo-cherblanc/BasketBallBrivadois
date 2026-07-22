@@ -26,8 +26,26 @@ function mediaUrl(url?: string | null): string | null {
 
 function buildStrapiApiUrl(path: string): string | null {
   try {
-    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-    return new URL(`/api${normalizedPath}`, `${STRAPI_URL}/`).toString();
+    const [pathname, query = ""] = path.split("?");
+    const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+    const url = new URL(`/api${normalizedPath}`, `${STRAPI_URL}/`);
+
+    if (query) {
+      // Encode brackets so query params like pagination[pageSize] are reliable
+      const params = new URLSearchParams();
+      for (const part of query.split("&")) {
+        if (!part) continue;
+        const eq = part.indexOf("=");
+        if (eq === -1) {
+          params.append(part, "");
+        } else {
+          params.append(part.slice(0, eq), part.slice(eq + 1));
+        }
+      }
+      url.search = params.toString();
+    }
+
+    return url.toString();
   } catch (error) {
     console.error("Invalid Strapi URL configuration:", STRAPI_URL, error);
     return null;

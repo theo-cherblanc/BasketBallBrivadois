@@ -585,7 +585,10 @@ export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    categorie: Schema.Attribute.Relation<'manyToOne', 'api::categorie.categorie'>;
+    categorie: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::categorie.categorie'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -11,19 +11,29 @@ export const metadata: Metadata = {
 
 export default async function EquipesPage() {
   const equipes = await getEquipes();
+  const sorted = [...equipes].sort(
+    (a, b) =>
+      (a.categorie?.ordre ?? 999) - (b.categorie?.ordre ?? 999) ||
+      (a.ordre ?? 0) - (b.ordre ?? 0) ||
+      a.nom.localeCompare(b.nom, "fr")
+  );
 
   return (
     <>
       <PageHero
         title="Équipes"
-        subtitle="Toutes les catégories du Basket Ball Brivadois"
+        subtitle={
+          sorted.length > 0
+            ? `${sorted.length} équipe${sorted.length > 1 ? "s" : ""} du Basket Ball Brivadois`
+            : "Toutes les catégories du Basket Ball Brivadois"
+        }
       />
       <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
-        {equipes.length === 0 ? (
+        {sorted.length === 0 ? (
           <EmptyState message="Ajoutez des équipes dans Strapi pour les afficher ici." />
         ) : (
           <ul className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
-            {equipes.map((equipe) => (
+            {sorted.map((equipe) => (
               <li key={equipe.documentId} className="bg-white">
                 <Link
                   href={`/equipes/${equipe.slug}`}
