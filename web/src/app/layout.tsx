@@ -17,6 +17,10 @@ const body = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+      "https://www.basketballbrivadois.fr"
+  ),
   title: {
     default: "Basket Ball Brivadois",
     template: "%s · Basket Ball Brivadois",

@@ -53,7 +53,10 @@ Variables ([`web/.env.example`](web/.env.example)) :
 
 ```
 NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
+NEXT_PUBLIC_SITE_URL=https://www.basketballbrivadois.fr
 ```
+
+SEO : Next génère `/sitemap.xml` et `/robots.txt` (pages fixes + équipes + actualités Strapi).
 
 ## Score'n'co (calendrier & résultats)
 
