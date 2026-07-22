@@ -475,6 +475,40 @@ export interface ApiActualiteActualite extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    description: "Cat\u00E9gories d'\u00E9quipes (ex. Seniors, U15\u2026)";
+    displayName: 'Cat\u00E9gorie';
+    pluralName: 'categories';
+    singularName: 'categorie';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    equipes: Schema.Attribute.Relation<'oneToMany', 'api::equipe.equipe'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::categorie.categorie'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'nom'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiClubClub extends Struct.SingleTypeSchema {
   collectionName: 'clubs';
   info: {
@@ -551,20 +585,7 @@ export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    categorie: Schema.Attribute.Enumeration<
-      [
-        'Seniors hommes',
-        'Seniors femmes',
-        'U18',
-        'U15',
-        'U13',
-        'U11',
-        'U9',
-        'Loisirs',
-        'Autre',
-      ]
-    > &
-      Schema.Attribute.Required;
+    categorie: Schema.Attribute.Relation<'manyToOne', 'api::categorie.categorie'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1214,6 +1235,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::actualite.actualite': ApiActualiteActualite;
+      'api::categorie.categorie': ApiCategorieCategorie;
       'api::club.club': ApiClubClub;
       'api::contact.contact': ApiContactContact;
       'api::equipe.equipe': ApiEquipeEquipe;
