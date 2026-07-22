@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global",
+    "description": "Paramètres globaux du site"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nomClub": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "couleurPrimaire": {
+      "type": "string",
+      "default": "#0a0a0a"
+    },
+    "couleurAccent": {
+      "type": "string",
+      "default": "#e30613"
+    },
+    "facebookUrl": {
+      "type": "string"
+    },
+    "instagramUrl": {
+      "type": "string"
+    },
+    "scorencoClubWidgetUrl": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "accrocheAccueil": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equipes",
+  "info": {
+    "singularName": "equipe",
+    "pluralName": "equipes",
+    "displayName": "Équipe",
+    "description": "Équipes du club"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nom",
+      "required": true
+    },
+    "categorie": {
+      "type": "enumeration",
+      "enum": [
+        "Seniors hommes",
+        "Seniors femmes",
+        "U18",
+        "U15",
+        "U13",
+        "U11",
+        "U9",
+        "Loisirs",
+        "Autre"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "scorencoWidgetUrl": {
+      "type": "string"
+    },
+    "ordre": {
+      "type": "integer",
+      "default": 0
+    },
+    "plannings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::planning-entrainement.planning-entrainement",
+      "mappedBy": "equipe"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "membres_bureau",
+  "info": {
+    "singularName": "membre-bureau",
+    "pluralName": "membres-bureau",
+    "displayName": "Membre du bureau",
+    "description": "Membres du bureau de l'association"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "bio": {
+      "type": "text"
+    },
+    "ordre": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

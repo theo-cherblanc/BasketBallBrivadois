@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "clubs",
+  "info": {
+    "singularName": "club",
+    "pluralName": "clubs",
+    "displayName": "Club",
+    "description": "Présentation du club"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "accroche": {
+      "type": "text"
+    },
+    "presentation": {
+      "type": "richtext",
+      "required": true
+    },
+    "historique": {
+      "type": "richtext"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

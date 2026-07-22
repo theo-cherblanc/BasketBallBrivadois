@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": "Coordonnées du club"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "adresse": {
+      "type": "text",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "horairesSecretariat": {
+      "type": "text"
+    },
+    "gymnase": {
+      "type": "string"
+    },
+    "carteUrl": {
+      "type": "string"
+    }
+  }
+}

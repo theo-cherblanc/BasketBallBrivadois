@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "actualites",
+  "info": {
+    "singularName": "actualite",
+    "pluralName": "actualites",
+    "displayName": "Actualité",
+    "description": "Actualités du club"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titre",
+      "required": true
+    },
+    "resume": {
+      "type": "text"
+    },
+    "contenu": {
+      "type": "richtext",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "datePublication": {
+      "type": "date",
+      "required": true
+    }
+  }
+}

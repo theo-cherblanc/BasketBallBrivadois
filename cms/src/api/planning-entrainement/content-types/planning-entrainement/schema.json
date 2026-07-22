@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plannings_entrainement",
+  "info": {
+    "singularName": "planning-entrainement",
+    "pluralName": "plannings-entrainement",
+    "displayName": "Planning entraînement",
+    "description": "Créneaux d'entraînement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "jour": {
+      "type": "enumeration",
+      "enum": [
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
+        "Dimanche"
+      ],
+      "required": true
+    },
+    "heureDebut": {
+      "type": "time",
+      "required": true
+    },
+    "heureFin": {
+      "type": "time",
+      "required": true
+    },
+    "lieu": {
+      "type": "string",
+      "required": true
+    },
+    "equipe": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::equipe.equipe",
+      "inversedBy": "plannings"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

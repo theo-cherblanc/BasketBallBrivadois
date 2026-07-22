@@ -1,0 +1,14 @@
+{
+  "name": "basketball-brivadois",
+  "private": true,
+  "description": "Site du Basket Ball Brivadois",
+  "scripts": {
+    "dev:cms": "npm run develop --prefix cms",
+    "dev:web": "npm run dev --prefix web",
+    "build:cms": "npm run build --prefix cms",
+    "build:web": "npm run build --prefix web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

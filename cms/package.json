@@ -1,0 +1,41 @@
+{
+  "name": "bbb-cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CMS Strapi — Basket Ball Brivadois",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.50.2",
+    "@strapi/plugin-users-permissions": "5.50.2",
+    "@strapi/strapi": "5.50.2",
+    "better-sqlite3": "12.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=26.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "49c9f8b8-2e68-4ac9-8886-cc016929b117",
+    "installId": "452381b287f416bfb462dba4b66faedc332ad6f11aaf4611400b0d374ab195c3"
+  }
+}
