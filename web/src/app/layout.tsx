@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   verification: {
     google: "XzhDIGIy13Pce5nkb9JsivldRqHMjXxRRupmVb6RlT8",
   },
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
 };
 
 export default async function RootLayout({
