@@ -47,6 +47,12 @@
       "relation": "oneToMany",
       "target": "api::planning-entrainement.planning-entrainement",
       "mappedBy": "equipe"
+    },
+    "coachs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coach.coach",
+      "mappedBy": "equipes"
     }
   }
 }

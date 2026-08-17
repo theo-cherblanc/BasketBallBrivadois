@@ -149,6 +149,13 @@ export async function getMembresBureau() {
   return (res?.data ?? []).map((m) => normalizeMedia(m)!);
 }
 
+export async function getCoachs() {
+  const res = await strapiFetch<StrapiListResponse<import("./types").Coach>>(
+    "/coachs?populate=*&sort=ordre:asc&pagination[pageSize]=100"
+  );
+  return (res?.data ?? []).map((c) => normalizeMedia(c)!);
+}
+
 export async function getPlannings() {
   const res = await strapiFetch<
     StrapiListResponse<import("./types").PlanningEntrainement>

@@ -25,6 +25,11 @@ export default async function EquipeDetailPage({ params }: Props) {
   const equipe = await getEquipeBySlug(slug);
   if (!equipe) notFound();
 
+  const coachs = [...(equipe.coachs ?? [])].sort(
+    (a, b) =>
+      (a.ordre ?? 0) - (b.ordre ?? 0) || a.nom.localeCompare(b.nom, "fr")
+  );
+
   return (
     <>
       <PageHero title={equipe.nom} subtitle={equipe.categorie?.nom || undefined} />
@@ -39,6 +44,23 @@ export default async function EquipeDetailPage({ params }: Props) {
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             {equipe.description && <RichText content={equipe.description} />}
+            {coachs.length > 0 && (
+              <div className={equipe.description ? "mt-8" : undefined}>
+                <p className="text-xs uppercase tracking-widest text-red">
+                  {coachs.length > 1 ? "Coachs" : "Coach"}
+                </p>
+                <p className="mt-1 font-display text-2xl uppercase tracking-wide text-ink">
+                  {coachs.map((coach, index) => (
+                    <span key={coach.documentId}>
+                      {index > 0 && ", "}
+                      <Link href="/coachs" className="hover:text-red">
+                        {coach.nom}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
+              </div>
+            )}
             {equipe.photo?.url && (
               <div className="mt-8 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

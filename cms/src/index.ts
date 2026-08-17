@@ -10,6 +10,8 @@ const PUBLIC_ACTIONS = [
   'api::actualite.actualite.findOne',
   'api::membre-bureau.membre-bureau.find',
   'api::membre-bureau.membre-bureau.findOne',
+  'api::coach.coach.find',
+  'api::coach.coach.findOne',
   'api::planning-entrainement.planning-entrainement.find',
   'api::planning-entrainement.planning-entrainement.findOne',
   'api::contact.contact.find',
@@ -153,6 +155,27 @@ async function seedIfEmpty(strapi: Core.Strapi) {
       heureFin: '19:30:00.000',
       lieu: 'Gymnase de Brioude',
       equipe: u15.documentId,
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::coach.coach').create({
+    data: {
+      nom: 'Jordan Leroy',
+      bio: 'Placeholder — remplacez par les vrais coachs du club.',
+      ordre: 1,
+      equipes: [seniors.documentId],
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::coach.coach').create({
+    data: {
+      nom: 'Camille Roux',
+      ordre: 2,
+      equipes: [u15.documentId],
       publishedAt: new Date().toISOString(),
     },
     status: 'published',
