@@ -22,6 +22,7 @@ const STATIC_PATHS = [
   "/actualites",
   "/entrainements",
   "/bureau",
+  "/coachs",
   "/contact",
 ];
 

@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coachs",
+  "info": {
+    "singularName": "coach",
+    "pluralName": "coachs",
+    "displayName": "Coach",
+    "description": "Entraîneurs du club, liés aux équipes"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "bio": {
+      "type": "text"
+    },
+    "ordre": {
+      "type": "integer",
+      "default": 0
+    },
+    "equipes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::equipe.equipe",
+      "inversedBy": "coachs"
+    }
+  }
+}

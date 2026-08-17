@@ -48,6 +48,17 @@ export type Equipe = {
   scorencoWidgetUrl?: string | null;
   ordre?: number | null;
   photo?: StrapiMedia | null;
+  coachs?: Coach[] | null;
+};
+
+export type Coach = {
+  id: number;
+  documentId: string;
+  nom: string;
+  bio?: string | null;
+  ordre?: number | null;
+  photo?: StrapiMedia | null;
+  equipes?: Equipe[] | null;
 };
 
 export type Actualite = {

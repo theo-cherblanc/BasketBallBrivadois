@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/actualites", label: "Actualités" },
   { href: "/entrainements", label: "Entraînements" },
   { href: "/bureau", label: "Bureau" },
+  { href: "/coachs", label: "Coachs" },
   { href: "/contact", label: "Contact" },
 ];
 

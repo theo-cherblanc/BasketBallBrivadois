@@ -80,6 +80,7 @@ Le front affiche le widget en iframe. Sans URL, un placeholder explique quoi fai
 | Équipe | Liste / détail équipes |
 | Actualité | Liste / détail actus |
 | Membre du bureau | Page Bureau |
+| Coach | Page Coachs + noms sur la fiche équipe |
 | Planning entraînement | Page Entraînements |
 | Contact | Page Contact + mailto |
 

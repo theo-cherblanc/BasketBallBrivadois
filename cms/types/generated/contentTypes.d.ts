@@ -509,6 +509,36 @@ export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCoachCoach extends Struct.CollectionTypeSchema {
+  collectionName: 'coachs';
+  info: {
+    description: 'Entra\u00EEneurs du club, li\u00E9s aux \u00E9quipes';
+    displayName: 'Coach';
+    pluralName: 'coachs';
+    singularName: 'coach';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bio: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    equipes: Schema.Attribute.Relation<'manyToMany', 'api::equipe.equipe'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::coach.coach'> &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiClubClub extends Struct.SingleTypeSchema {
   collectionName: 'clubs';
   info: {
@@ -602,6 +632,7 @@ export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
     nom: Schema.Attribute.String & Schema.Attribute.Required;
     ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     photo: Schema.Attribute.Media<'images'>;
+    coachs: Schema.Attribute.Relation<'manyToMany', 'api::coach.coach'>;
     plannings: Schema.Attribute.Relation<
       'oneToMany',
       'api::planning-entrainement.planning-entrainement'
@@ -1240,6 +1271,7 @@ declare module '@strapi/strapi' {
       'api::actualite.actualite': ApiActualiteActualite;
       'api::categorie.categorie': ApiCategorieCategorie;
       'api::club.club': ApiClubClub;
+      'api::coach.coach': ApiCoachCoach;
       'api::contact.contact': ApiContactContact;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::global.global': ApiGlobalGlobal;
