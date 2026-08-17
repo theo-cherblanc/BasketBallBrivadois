@@ -84,6 +84,16 @@ Le front affiche le widget en iframe. Sans URL, un placeholder explique quoi fai
 | Planning entraînement | Page Entraînements |
 | Contact | Page Contact + mailto |
 
+## Admin Strapi (langue)
+
+L’admin est disponible en **français** (Profil → langue de l’interface).
+
+Si un navigateur traduit automatiquement la page anglaise (Chrome / Google Traduction), React peut afficher :
+
+> Échec de l’exécution de « removeChild » sur « Node »
+
+Dans ce cas : désactiver la traduction auto sur `/admin`, ou passer l’interface en français.
+
 ## Design
 
 Charte alignée sur le logo : **noir** `#0a0a0a`, **rouge** `#e30613`, fond blanc. Logo dans [`web/public/logo-bbb.png`](web/public/logo-bbb.png).
