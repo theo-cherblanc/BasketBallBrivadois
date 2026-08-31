@@ -41,7 +41,7 @@ export default async function EntrainementsPage() {
                   <th className="py-3 pr-4 font-medium">Horaire</th>
                   <th className="py-3 pr-4 font-medium">Équipe</th>
                   <th className="py-3 pr-4 font-medium">Lieu</th>
-                  <th className="py-3 font-medium">Notes</th>
+                  <th className="py-3 font-medium">Information</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,7 +57,9 @@ export default async function EntrainementsPage() {
                       {slot.equipe?.nom || "—"}
                     </td>
                     <td className="py-4 pr-4 text-sm">{slot.lieu}</td>
-                    <td className="py-4 text-sm text-muted">{slot.notes || "—"}</td>
+                    <td className="py-4 text-sm text-muted">
+                      {slot.information || "—"}
+                    </td>
                   </tr>
                 ))}
               </tbody>

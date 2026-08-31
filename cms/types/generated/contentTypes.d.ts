@@ -749,7 +749,7 @@ export interface ApiPlanningEntrainementPlanningEntrainement
       'api::planning-entrainement.planning-entrainement'
     > &
       Schema.Attribute.Private;
-    notes: Schema.Attribute.Text;
+    information: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
