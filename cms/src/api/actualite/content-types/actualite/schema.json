@@ -24,8 +24,7 @@
       "type": "text"
     },
     "contenu": {
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "image": {
       "type": "media",

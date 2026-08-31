@@ -45,9 +45,11 @@ export default async function ActualiteDetailPage({ params }: Props) {
             />
           </div>
         )}
-        <div className="mt-10">
-          <RichText content={actu.contenu} />
-        </div>
+        {actu.contenu && (
+          <div className="mt-10">
+            <RichText content={actu.contenu} />
+          </div>
+        )}
       </article>
     </>
   );
