@@ -453,7 +453,7 @@ export interface ApiActualiteActualite extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    contenu: Schema.Attribute.RichText & Schema.Attribute.Required;
+    contenu: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

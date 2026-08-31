@@ -67,7 +67,7 @@ export type Actualite = {
   titre: string;
   slug: string;
   resume?: string | null;
-  contenu: string;
+  contenu?: string | null;
   datePublication: string;
   image?: StrapiMedia | null;
 };
