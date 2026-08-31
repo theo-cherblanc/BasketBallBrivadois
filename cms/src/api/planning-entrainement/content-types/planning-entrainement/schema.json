@@ -42,7 +42,7 @@
       "target": "api::equipe.equipe",
       "inversedBy": "plannings"
     },
-    "notes": {
+    "information": {
       "type": "text"
     }
   }

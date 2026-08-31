@@ -89,7 +89,7 @@ export type PlanningEntrainement = {
   heureDebut: string;
   heureFin: string;
   lieu: string;
-  notes?: string | null;
+  information?: string | null;
   equipe?: Equipe | null;
 };
 
