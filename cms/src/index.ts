@@ -15,6 +15,7 @@ const PUBLIC_ACTIONS = [
   'api::planning-entrainement.planning-entrainement.find',
   'api::planning-entrainement.planning-entrainement.findOne',
   'api::contact.contact.find',
+  'api::licence.licence.find',
   'api::global.global.find',
 ];
 
@@ -88,6 +89,17 @@ async function seedIfEmpty(strapi: Core.Strapi) {
       telephone: '04 00 00 00 00',
       gymnase: 'Gymnase de Brioude',
       horairesSecretariat: 'Sur rendez-vous',
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::licence.licence').create({
+    data: {
+      titre: 'Licences',
+      accroche: 'Modalités et paiement des licences FFBB',
+      contenu:
+        '## Paiement des licences\n\nLes licences doivent être réglées avant la première participation aux entraînements ou matchs.\n\n### Montants indicatifs\n\n- **Mineurs** : renseignez les tarifs du club\n- **Adultes** : renseignez les tarifs du club\n\n### Modalités\n\n- Chèque à l\'ordre du club\n- Virement bancaire (RIB disponible au secrétariat)\n\nPour toute question, contactez le bureau du club.',
       publishedAt: new Date().toISOString(),
     },
     status: 'published',
@@ -220,11 +232,30 @@ async function seedIfEmpty(strapi: Core.Strapi) {
   strapi.log.info('Seed completed');
 }
 
+async function ensureLicenceContent(strapi: Core.Strapi) {
+  const existing = await strapi.documents('api::licence.licence').findFirst();
+  if (existing) return;
+
+  strapi.log.info('Creating default Licence content…');
+
+  await strapi.documents('api::licence.licence').create({
+    data: {
+      titre: 'Licences',
+      accroche: 'Modalités et paiement des licences FFBB',
+      contenu:
+        '## Paiement des licences\n\nLes licences doivent être réglées avant la première participation aux entraînements ou matchs.\n\n### Montants indicatifs\n\n- **Mineurs** : renseignez les tarifs du club\n- **Adultes** : renseignez les tarifs du club\n\n### Modalités\n\n- Chèque à l\'ordre du club\n- Virement bancaire (RIB disponible au secrétariat)\n\nPour toute question, contactez le bureau du club.',
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+}
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
     await setPublicPermissions(strapi);
     await seedIfEmpty(strapi);
+    await ensureLicenceContent(strapi);
   },
 };

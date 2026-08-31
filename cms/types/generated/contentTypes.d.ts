@@ -603,6 +603,37 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLicenceLicence extends Struct.SingleTypeSchema {
+  collectionName: 'licences';
+  info: {
+    description: 'Informations sur le paiement des licences';
+    displayName: 'Licence';
+    pluralName: 'licences';
+    singularName: 'licence';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    accroche: Schema.Attribute.Text;
+    contenu: Schema.Attribute.RichText & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::licence.licence'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titre: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
   collectionName: 'equipes';
   info: {
@@ -1273,6 +1304,7 @@ declare module '@strapi/strapi' {
       'api::club.club': ApiClubClub;
       'api::coach.coach': ApiCoachCoach;
       'api::contact.contact': ApiContactContact;
+      'api::licence.licence': ApiLicenceLicence;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::global.global': ApiGlobalGlobal;
       'api::membre-bureau.membre-bureau': ApiMembreBureauMembreBureau;
