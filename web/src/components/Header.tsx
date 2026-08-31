@@ -13,6 +13,7 @@ const LINKS = [
   { href: "/entrainements", label: "Entraînements" },
   { href: "/bureau", label: "Bureau" },
   { href: "/coachs", label: "Coachs" },
+  { href: "/licence", label: "Licences" },
   { href: "/contact", label: "Contact" },
 ];
 

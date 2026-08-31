@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "licences",
+  "info": {
+    "singularName": "licence",
+    "pluralName": "licences",
+    "displayName": "Licence",
+    "description": "Informations sur le paiement des licences"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "accroche": {
+      "type": "text"
+    },
+    "contenu": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -103,3 +103,11 @@ export type Contact = {
   gymnase?: string | null;
   carteUrl?: string | null;
 };
+
+export type Licence = {
+  id: number;
+  documentId: string;
+  titre: string;
+  accroche?: string | null;
+  contenu: string;
+};

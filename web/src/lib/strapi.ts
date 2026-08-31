@@ -172,4 +172,11 @@ export async function getContact() {
   return res?.data ?? null;
 }
 
+export async function getLicence() {
+  const res = await strapiFetch<StrapiSingleResponse<import("./types").Licence>>(
+    "/licence"
+  );
+  return res?.data ?? null;
+}
+
 export { STRAPI_URL, mediaUrl };
