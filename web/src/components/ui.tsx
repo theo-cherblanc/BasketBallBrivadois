@@ -1,4 +1,7 @@
 import Link from "next/link";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { mediaUrl } from "@/lib/strapi";
 
 type PageHeroProps = {
   title: string;
@@ -69,16 +72,24 @@ export function EmptyState({ message }: { message: string }) {
 }
 
 export function RichText({ content }: { content: string }) {
-  const paragraphs = content
-    .split(/\n{2,}/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
   return (
     <div className="prose-club max-w-3xl text-base leading-relaxed text-ink/90 md:text-lg">
-      {paragraphs.map((p, i) => (
-        <p key={i}>{p}</p>
-      ))}
+      <Markdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          img: ({ src, alt }) => {
+            const rawSrc = typeof src === "string" ? src : undefined;
+            const url = rawSrc ? (mediaUrl(rawSrc) ?? rawSrc) : undefined;
+            if (!url) return null;
+            return (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={url} alt={alt ?? ""} />
+            );
+          },
+        }}
+      >
+        {content}
+      </Markdown>
     </div>
   );
 }
