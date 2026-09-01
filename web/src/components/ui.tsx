@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { normalizeMarkdownBlocks } from "@/lib/format";
 import { mediaUrl } from "@/lib/strapi";
 
 type PageHeroProps = {
@@ -72,6 +73,8 @@ export function EmptyState({ message }: { message: string }) {
 }
 
 export function RichText({ content }: { content: string }) {
+  const markdown = normalizeMarkdownBlocks(content);
+
   return (
     <div className="prose-club max-w-3xl text-base leading-relaxed text-ink/90 md:text-lg">
       <Markdown
@@ -88,7 +91,7 @@ export function RichText({ content }: { content: string }) {
           },
         }}
       >
-        {content}
+        {markdown}
       </Markdown>
     </div>
   );

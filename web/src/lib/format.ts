@@ -17,10 +17,12 @@ export function formatTime(time: string): string {
   return `${match[1]}h${match[2]}`;
 }
 
-/** Minimal richtext display: preserve paragraphs from plain/markdown-ish text */
-export function richtextToParagraphs(content: string): string[] {
-  return content
-    .split(/\n{2,}/)
-    .map((p) => p.trim())
-    .filter(Boolean);
+/** Insère une ligne vide avant listes/titres si l'éditeur Strapi n'en met qu'une seule. */
+export function normalizeMarkdownBlocks(content: string): string {
+  const normalized = content.replace(/\r\n/g, "\n");
+
+  return normalized
+    .replace(/([^\n])\n(?=[-*+] )/gm, "$1\n\n")
+    .replace(/([^\n])\n(?=\d+\. )/gm, "$1\n\n")
+    .replace(/([^\n])\n(#{1,6} )/gm, "$1\n\n");
 }
