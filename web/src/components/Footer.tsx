@@ -29,6 +29,9 @@ export function Footer({ clubName, facebookUrl, instagramUrl }: FooterProps) {
           </div>
         </div>
         <div className="flex flex-col gap-3 text-sm">
+          <Link href="/sponsors" className="transition-colors hover:text-red-hot">
+            Sponsors
+          </Link>
           <Link href="/contact" className="transition-colors hover:text-red-hot">
             Nous contacter
           </Link>

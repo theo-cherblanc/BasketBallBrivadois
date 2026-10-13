@@ -509,36 +509,6 @@ export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCoachCoach extends Struct.CollectionTypeSchema {
-  collectionName: 'coachs';
-  info: {
-    description: 'Entra\u00EEneurs du club, li\u00E9s aux \u00E9quipes';
-    displayName: 'Coach';
-    pluralName: 'coachs';
-    singularName: 'coach';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    bio: Schema.Attribute.Text;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    equipes: Schema.Attribute.Relation<'manyToMany', 'api::equipe.equipe'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::coach.coach'> &
-      Schema.Attribute.Private;
-    nom: Schema.Attribute.String & Schema.Attribute.Required;
-    ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    photo: Schema.Attribute.Media<'images'>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiClubClub extends Struct.SingleTypeSchema {
   collectionName: 'clubs';
   info: {
@@ -563,6 +533,36 @@ export interface ApiClubClub extends Struct.SingleTypeSchema {
     presentation: Schema.Attribute.RichText & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     titre: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCoachCoach extends Struct.CollectionTypeSchema {
+  collectionName: 'coachs';
+  info: {
+    description: 'Entra\u00EEneurs du club, li\u00E9s aux \u00E9quipes';
+    displayName: 'Coach';
+    pluralName: 'coachs';
+    singularName: 'coach';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bio: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    equipes: Schema.Attribute.Relation<'manyToMany', 'api::equipe.equipe'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::coach.coach'> &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -603,37 +603,6 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiLicenceLicence extends Struct.SingleTypeSchema {
-  collectionName: 'licences';
-  info: {
-    description: 'Informations sur le paiement des licences';
-    displayName: 'Licence';
-    pluralName: 'licences';
-    singularName: 'licence';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    accroche: Schema.Attribute.Text;
-    contenu: Schema.Attribute.RichText & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::licence.licence'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    titre: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
   collectionName: 'equipes';
   info: {
@@ -650,6 +619,7 @@ export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::categorie.categorie'
     >;
+    coachs: Schema.Attribute.Relation<'manyToMany', 'api::coach.coach'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -663,7 +633,6 @@ export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
     nom: Schema.Attribute.String & Schema.Attribute.Required;
     ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     photo: Schema.Attribute.Media<'images'>;
-    coachs: Schema.Attribute.Relation<'manyToMany', 'api::coach.coach'>;
     plannings: Schema.Attribute.Relation<
       'oneToMany',
       'api::planning-entrainement.planning-entrainement'
@@ -710,6 +679,37 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     nomClub: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     scorencoClubWidgetUrl: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLicenceLicence extends Struct.SingleTypeSchema {
+  collectionName: 'licences';
+  info: {
+    description: 'Informations sur le paiement des licences';
+    displayName: 'Licence';
+    pluralName: 'licences';
+    singularName: 'licence';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    accroche: Schema.Attribute.Text;
+    contenu: Schema.Attribute.RichText & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::licence.licence'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titre: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -769,6 +769,7 @@ export interface ApiPlanningEntrainementPlanningEntrainement
     equipe: Schema.Attribute.Relation<'manyToOne', 'api::equipe.equipe'>;
     heureDebut: Schema.Attribute.Time & Schema.Attribute.Required;
     heureFin: Schema.Attribute.Time & Schema.Attribute.Required;
+    information: Schema.Attribute.Text;
     jour: Schema.Attribute.Enumeration<
       ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
     > &
@@ -780,8 +781,45 @@ export interface ApiPlanningEntrainementPlanningEntrainement
       'api::planning-entrainement.planning-entrainement'
     > &
       Schema.Attribute.Private;
-    information: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSponsorSponsor extends Struct.CollectionTypeSchema {
+  collectionName: 'sponsors';
+  info: {
+    description: 'Partenaires et sponsors du club';
+    displayName: 'Sponsor';
+    pluralName: 'sponsors';
+    singularName: 'sponsor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sponsor.sponsor'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'>;
+    niveau: Schema.Attribute.Enumeration<
+      ['Principal', 'Officiel', 'Partenaire']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Partenaire'>;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    ordre: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    siteUrl: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1304,11 +1342,12 @@ declare module '@strapi/strapi' {
       'api::club.club': ApiClubClub;
       'api::coach.coach': ApiCoachCoach;
       'api::contact.contact': ApiContactContact;
-      'api::licence.licence': ApiLicenceLicence;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::global.global': ApiGlobalGlobal;
+      'api::licence.licence': ApiLicenceLicence;
       'api::membre-bureau.membre-bureau': ApiMembreBureauMembreBureau;
       'api::planning-entrainement.planning-entrainement': ApiPlanningEntrainementPlanningEntrainement;
+      'api::sponsor.sponsor': ApiSponsorSponsor;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

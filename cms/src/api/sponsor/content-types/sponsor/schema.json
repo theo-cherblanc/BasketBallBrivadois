@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sponsors",
+  "info": {
+    "singularName": "sponsor",
+    "pluralName": "sponsors",
+    "displayName": "Sponsor",
+    "description": "Partenaires et sponsors du club"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "siteUrl": {
+      "type": "string"
+    },
+    "niveau": {
+      "type": "enumeration",
+      "enum": ["Principal", "Officiel", "Partenaire"],
+      "default": "Partenaire",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "ordre": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
