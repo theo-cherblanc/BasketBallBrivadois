@@ -111,3 +111,18 @@ export type Licence = {
   accroche?: string | null;
   contenu: string;
 };
+
+export const SPONSOR_NIVEAUX = ["Principal", "Officiel", "Partenaire"] as const;
+
+export type SponsorNiveau = (typeof SPONSOR_NIVEAUX)[number];
+
+export type Sponsor = {
+  id: number;
+  documentId: string;
+  nom: string;
+  siteUrl?: string | null;
+  niveau?: SponsorNiveau | string | null;
+  description?: string | null;
+  ordre?: number | null;
+  logo?: StrapiMedia | null;
+};

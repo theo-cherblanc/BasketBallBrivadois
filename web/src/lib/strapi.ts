@@ -179,4 +179,11 @@ export async function getLicence() {
   return res?.data ?? null;
 }
 
+export async function getSponsors() {
+  const res = await strapiFetch<StrapiListResponse<import("./types").Sponsor>>(
+    "/sponsors?populate=*&sort=ordre:asc&pagination[pageSize]=100"
+  );
+  return (res?.data ?? []).map((sponsor) => normalizeMedia(sponsor)!);
+}
+
 export { STRAPI_URL, mediaUrl };

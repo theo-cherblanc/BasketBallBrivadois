@@ -31,7 +31,7 @@ Au **premier lancement** :
 2. Crée le compte administrateur
 3. Au bootstrap, Strapi :
    - ouvre la lecture publique des contenus
-   - injecte un **seed** minimal (club, équipes, actus, bureau, contact, planning)
+   - injecte un **seed** minimal (club, équipes, actus, bureau, coachs, sponsors, contact, planning)
 
 Admin : http://localhost:1337/admin  
 API : http://localhost:1337/api
@@ -83,6 +83,22 @@ Le front affiche le widget en iframe. Sans URL, un placeholder explique quoi fai
 | Coach | Page Coachs + noms sur la fiche équipe |
 | Planning entraînement | Page Entraînements |
 | Contact | Page Contact + mailto |
+| Sponsor | Page Sponsors + bandeau accueil |
+
+### Sponsors
+
+Dans Strapi, menu **Sponsor** : un contenu par partenaire, puis **Publier**.
+
+| Champ | Rôle |
+|-------|------|
+| Nom | Nom affiché |
+| Logo | Image (Media Library). Sans logo, le nom est affiché |
+| Site web (`siteUrl`) | Lien externe. `https://` est ajouté s'il manque. Seuls `http` et `https` sont affichés |
+| Niveau | `Principal`, `Officiel` ou `Partenaire` — regroupe la page |
+| Description | Texte court optionnel, sur la page Sponsors |
+| Ordre | Tri dans un même niveau (plus petit en premier) |
+
+La page `/sponsors` liste les partenaires publiés par niveau. L'accueil montre jusqu'à 8 logos, avec un lien vers la page.
 
 ## Admin Strapi (langue)
 

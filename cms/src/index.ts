@@ -17,6 +17,8 @@ const PUBLIC_ACTIONS = [
   'api::contact.contact.find',
   'api::licence.licence.find',
   'api::global.global.find',
+  'api::sponsor.sponsor.find',
+  'api::sponsor.sponsor.findOne',
 ];
 
 async function setPublicPermissions(strapi: Core.Strapi) {
@@ -211,6 +213,37 @@ async function seedIfEmpty(strapi: Core.Strapi) {
       nom: 'Sam Dupont',
       role: 'Secrétaire',
       ordre: 2,
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::sponsor.sponsor').create({
+    data: {
+      nom: 'Sponsor principal (exemple)',
+      niveau: 'Principal',
+      description: 'Placeholder — remplacez par un vrai partenaire du club.',
+      ordre: 1,
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::sponsor.sponsor').create({
+    data: {
+      nom: 'Partenaire officiel (exemple)',
+      niveau: 'Officiel',
+      ordre: 1,
+      publishedAt: new Date().toISOString(),
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::sponsor.sponsor').create({
+    data: {
+      nom: 'Partenaire (exemple)',
+      niveau: 'Partenaire',
+      ordre: 1,
       publishedAt: new Date().toISOString(),
     },
     status: 'published',

@@ -1,10 +1,15 @@
+import { SponsorHomeBand } from "@/components/Sponsors";
 import { CtaLink } from "@/components/ui";
-import { getActualites, getGlobal } from "@/lib/strapi";
+import { getActualites, getGlobal, getSponsors } from "@/lib/strapi";
 import { formatDate } from "@/lib/format";
 import Link from "next/link";
 
 export default async function HomePage() {
-  const [global, actualites] = await Promise.all([getGlobal(), getActualites()]);
+  const [global, actualites, sponsors] = await Promise.all([
+    getGlobal(),
+    getActualites(),
+    getSponsors(),
+  ]);
   const clubName = global?.nomClub || "Basket Ball Brivadois";
   const accroche =
     global?.accrocheAccueil ||
@@ -79,6 +84,8 @@ export default async function HomePage() {
           </ul>
         )}
       </section>
+
+      <SponsorHomeBand sponsors={sponsors} />
     </>
   );
 }

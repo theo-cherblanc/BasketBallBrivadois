@@ -14,6 +14,7 @@ const LINKS = [
   { href: "/bureau", label: "Bureau" },
   { href: "/coachs", label: "Coachs" },
   { href: "/licence", label: "Licences" },
+  { href: "/sponsors", label: "Sponsors" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -64,7 +65,7 @@ export function Header({ clubName }: HeaderProps) {
               : "hidden"
           } md:static md:block md:border-0 md:bg-transparent md:p-0 md:shadow-none md:text-inherit`}
         >
-          <ul className="flex flex-col gap-3 md:flex-row md:items-center md:gap-5">
+          <ul className="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-x-4 md:gap-y-2 lg:gap-x-5">
             {LINKS.map((link) => {
               const active =
                 pathname === link.href || pathname.startsWith(`${link.href}/`);
