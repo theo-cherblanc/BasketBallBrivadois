@@ -475,6 +475,36 @@ export interface ApiActualiteActualite extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBoutiqueBoutique extends Struct.SingleTypeSchema {
+  collectionName: 'boutiques';
+  info: {
+    description: 'Image des produits et lien vers la boutique externe';
+    displayName: 'Boutique';
+    pluralName: 'boutiques';
+    singularName: 'boutique';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    lien: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::boutique.boutique'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -1338,6 +1368,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::actualite.actualite': ApiActualiteActualite;
+      'api::boutique.boutique': ApiBoutiqueBoutique;
       'api::categorie.categorie': ApiCategorieCategorie;
       'api::club.club': ApiClubClub;
       'api::coach.coach': ApiCoachCoach;

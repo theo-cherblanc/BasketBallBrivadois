@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "boutiques",
+  "info": {
+    "singularName": "boutique",
+    "pluralName": "boutiques",
+    "displayName": "Boutique",
+    "description": "Image des produits et lien vers la boutique externe"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "lien": {
+      "type": "string"
+    }
+  }
+}

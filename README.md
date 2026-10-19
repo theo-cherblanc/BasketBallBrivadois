@@ -84,6 +84,7 @@ Le front affiche le widget en iframe. Sans URL, un placeholder explique quoi fai
 | Planning entraînement | Page Entraînements |
 | Contact | Page Contact + mailto |
 | Sponsor | Page Sponsors + bandeau accueil |
+| Boutique | Page Boutique (image + lien externe) |
 
 ### Sponsors
 
@@ -99,6 +100,15 @@ Dans Strapi, menu **Sponsor** : un contenu par partenaire, puis **Publier**.
 | Ordre | Tri dans un même niveau (plus petit en premier) |
 
 La page `/sponsors` liste les partenaires publiés par niveau. L'accueil montre jusqu'à 8 logos, avec un lien vers la page.
+
+### Boutique
+
+Dans Strapi, menu **Boutique** : une seule entrée, puis **Publier**.
+
+| Champ | Rôle |
+|-------|------|
+| Image | Grande image des produits, affichée en pleine largeur sur `/boutique` |
+| Lien | Adresse de la boutique externe. `https://` est ajouté s'il manque |
 
 ## Admin Strapi (langue)
 
