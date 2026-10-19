@@ -19,6 +19,7 @@ const PUBLIC_ACTIONS = [
   'api::global.global.find',
   'api::sponsor.sponsor.find',
   'api::sponsor.sponsor.findOne',
+  'api::boutique.boutique.find',
 ];
 
 async function setPublicPermissions(strapi: Core.Strapi) {

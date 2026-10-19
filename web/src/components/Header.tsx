@@ -15,6 +15,7 @@ const LINKS = [
   { href: "/coachs", label: "Coachs" },
   { href: "/licence", label: "Licences" },
   { href: "/sponsors", label: "Sponsors" },
+  { href: "/boutique", label: "Boutique" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -28,10 +29,10 @@ export function Header({ clubName }: HeaderProps) {
 
   return (
     <header className="absolute inset-x-0 top-0 z-40 text-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8">
+      <div className="mx-auto flex max-w-screen-2xl items-center justify-between gap-6 px-5 py-4 md:px-8">
         <Link
           href="/"
-          className="flex items-center gap-3"
+          className="flex shrink-0 items-center gap-3"
           onClick={() => setOpen(false)}
         >
           <Image
@@ -42,7 +43,7 @@ export function Header({ clubName }: HeaderProps) {
             className="h-12 w-12 object-contain md:h-14 md:w-14"
             priority
           />
-          <span className="font-display text-xl tracking-wide uppercase md:text-2xl">
+          <span className="whitespace-nowrap font-display text-xl tracking-wide uppercase md:text-2xl">
             {clubName}
           </span>
         </Link>
@@ -65,7 +66,7 @@ export function Header({ clubName }: HeaderProps) {
               : "hidden"
           } md:static md:block md:border-0 md:bg-transparent md:p-0 md:shadow-none md:text-inherit`}
         >
-          <ul className="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-x-4 md:gap-y-2 lg:gap-x-5">
+          <ul className="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-x-3 md:gap-y-2 lg:gap-x-4 xl:flex-nowrap xl:gap-x-5">
             {LINKS.map((link) => {
               const active =
                 pathname === link.href || pathname.startsWith(`${link.href}/`);

@@ -104,6 +104,13 @@ export type Contact = {
   carteUrl?: string | null;
 };
 
+export type Boutique = {
+  id: number;
+  documentId: string;
+  lien?: string | null;
+  image?: StrapiMedia | null;
+};
+
 export type Licence = {
   id: number;
   documentId: string;
